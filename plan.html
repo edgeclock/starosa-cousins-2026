@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Sta. Rosa Cousins Overnight</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: one readable column, trip "itinerary card" sections, three listing cards side by side that stack on phones */
+:root {
+  --bg: #f6f5fb;
+  --surface: #ffffff;
+  --fg: #1d1b2e;
+  --muted: #5e5a78;
+  --line: #e2e0ee;
+  --accent: #4b3fb5;      /* night-sky indigo: EK + concert night */
+  --accent-soft: #ebe8fb;
+  --warm: #c46a12;        /* marigold for deadlines */
+  --warm-soft: #fbefe1;
+  --good: #22764a;
+  --good-soft: #e3f3ea;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #14131d; --surface: #1d1c29; --fg: #ecebf5; --muted: #a8a5c2; --line: #2f2d42;
+    --accent: #a49bff; --accent-soft: #2a2650; --warm: #f0a656; --warm-soft: #3a2a17;
+    --good: #6fd29c; --good-soft: #17301f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #14131d; --surface: #1d1c29; --fg: #ecebf5; --muted: #a8a5c2; --line: #2f2d42;
+  --accent: #a49bff; --accent-soft: #2a2650; --warm: #f0a656; --warm-soft: #3a2a17;
+  --good: #6fd29c; --good-soft: #17301f; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.6;
+}
+.wrap {
+  max-width: 980px; margin: 0 auto;
+  padding-block: 32px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 48px;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.15; }
+h1 { font-size: clamp(2rem, 6vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: 1.6rem; font-weight: 800; }
+h3 { font-size: 1.15rem; font-weight: 600; }
+p { margin: 0; }
+.eyebrow { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.muted { color: var(--muted); }
+.lede { font-size: 1.05rem; color: var(--muted); max-width: 62ch; }
+section { display: grid; gap: 20px; }
+.section-head { display: grid; gap: 6px; }
+
+/* Hero */
+.hero { display: grid; gap: 16px; }
+.dates { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 500;
+  background: var(--accent-soft); color: var(--accent);
+}
+.chip.warm { background: var(--warm-soft); color: var(--warm); }
+.chip.good { background: var(--good-soft); color: var(--good); }
+
+/* People */
+.people { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.group { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 8px; align-content: start; }
+.group .names { font-weight: 600; font-size: 1.05rem; }
+.group .route { font-size: 0.88rem; color: var(--muted); }
+.tag { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 8px; border-radius: 6px; justify-self: start; }
+.tag.ek { background: var(--accent-soft); color: var(--accent); }
+.tag.concert { background: var(--warm-soft); color: var(--warm); }
+
+/* Timeline */
+.day { display: grid; gap: 4px; }
+.day h3 { margin-bottom: 8px; }
+.tl { list-style: none; margin: 0; padding: 0; display: grid; }
+.tl li {
+  display: grid; grid-template-columns: 96px 1fr; gap: 16px;
+  padding: 12px 0; border-top: 1px solid var(--line);
+}
+.tl li:first-child { border-top: 0; }
+.tl time { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--accent); font-size: 0.92rem; }
+.tl .what { min-width: 0; display: grid; gap: 2px; }
+.tl .who { font-size: 0.85rem; color: var(--muted); }
+.tbd { color: var(--warm); font-weight: 600; }
+
+/* Listings */
+.vote-box {
+  background: var(--accent-soft); border-radius: 12px; padding: 16px 20px;
+  display: grid; gap: 10px;
+}
+.vote-box strong { color: var(--accent); }
+.listings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 860px) { .listings { grid-template-columns: 1fr; } }
+.listing {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px;
+  padding: 20px; display: grid; gap: 14px; align-content: start; min-width: 0;
+}
+.listing .top { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.letter {
+  font-family: var(--font-display); font-weight: 800; font-size: 2.2rem; line-height: 1;
+  color: var(--accent);
+}
+.price { text-align: right; }
+.price .amt { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; font-variant-numeric: tabular-nums; }
+.price .per { font-size: 0.8rem; color: var(--muted); }
+.listing .name { font-weight: 600; line-height: 1.35; }
+.facts { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; font-size: 0.88rem; margin: 0; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; font-variant-numeric: tabular-nums; }
+.pros, .cons { margin: 0; padding-left: 18px; font-size: 0.88rem; display: grid; gap: 4px; }
+.list-label { font-size: 0.72rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+.list-label.good { color: var(--good); }
+.list-label.warm { color: var(--warm); }
+
+/* Comparison table */
+.table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 620px; font-size: 0.88rem; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+thead th { font-family: var(--font-display); font-size: 1rem; color: var(--accent); }
+tbody th { color: var(--muted); font-weight: 500; white-space: nowrap; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+td { font-variant-numeric: tabular-nums; }
+.best { color: var(--good); font-weight: 600; }
+
+/* RJ car ask */
+.ask {
+  background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--warm);
+  border-radius: 12px; padding: 20px; display: grid; gap: 12px;
+}
+.ask ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; }
+
+/* Checklists */
+.checklists { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.checklist { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; align-content: start; }
+.checklist .count { font-size: 0.82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.checklist ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.checklist label {
+  display: grid; grid-template-columns: 20px 1fr; gap: 10px; align-items: start;
+  padding: 6px 4px; border-radius: 8px; cursor: pointer; font-size: 0.92rem;
+}
+.checklist label:hover { background: var(--accent-soft); }
+.checklist input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--accent); }
+.checklist input:checked + span { color: var(--muted); text-decoration: line-through; }
+.checklist .note { font-size: 0.8rem; color: var(--muted); display: block; }
+input:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Open items + GC message */
+.open { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.gc { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px; display: grid; gap: 12px; }
+.gc pre { margin: 0; white-space: pre-wrap; font-family: var(--font-body); font-size: 0.9rem; }
+button {
+  font: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+  background: var(--accent); color: var(--surface); border: 0; border-radius: 8px; padding: 8px 16px; justify-self: start;
+}
+.foot { font-size: 0.8rem; color: var(--muted); }
+
+/* Listing photos */
+.shot { display: block; border-radius: 10px; overflow: hidden; border: 1px solid var(--line); }
+.shot img { display: block; width: 100%; max-width: 100%; aspect-ratio: 2.5 / 1; object-fit: cover; object-position: center bottom; }
+.shot-caption { font-size: 0.78rem; color: var(--muted); margin-top: -8px; }
+.shot-empty {
+  aspect-ratio: 2.5 / 1; max-width: 100%; border-radius: 10px; border: 1px dashed var(--line);
+  display: grid; place-items: center; font-size: 0.85rem; color: var(--muted); background: var(--bg);
+}
+
+/* Feature block */
+.thanks {
+  background: var(--warm-soft); border-radius: 18px; padding: 24px;
+  display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; align-items: center;
+}
+@media (max-width: 680px) { .thanks { grid-template-columns: 1fr; } }
+.thanks figure { margin: 0; position: relative; }
+.thanks img { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 40%; border-radius: 14px; transform: rotate(-2deg); box-shadow: 0 10px 30px rgba(60, 30, 0, 0.18); }
+.sticker {
+  position: absolute; right: -6px; bottom: 14px; transform: rotate(6deg);
+  background: var(--warm); color: var(--surface); font-family: var(--font-display); font-weight: 800;
+  font-size: 0.9rem; padding: 6px 12px; border-radius: 8px;
+}
+.thanks .copy { display: grid; gap: 12px; min-width: 0; }
+.thanks h2 { font-size: clamp(1.8rem, 5vw, 2.6rem); color: var(--warm); }
+.thanks .eyebrow { color: var(--warm); }
+.covers { display: flex; flex-wrap: wrap; gap: 8px; }
+.signoff { font-weight: 600; }
+
+/* Requests */
+.requests { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 14px; }
+.req-kinds { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.req-kind { display: grid; gap: 4px; align-content: start; }
+.req-kind strong { font-family: var(--font-display); font-size: 1.05rem; color: var(--accent); }
+.req-kind span { font-size: 0.88rem; color: var(--muted); }
+
+/* EJ's pick */
+.listing.pick { border: 2px solid var(--accent); box-shadow: 0 8px 24px rgba(75, 63, 181, 0.15); }
+.pick-badge {
+  justify-self: start; background: var(--accent); color: var(--surface);
+  font-size: 0.78rem; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+}
+.pick-why { font-size: 0.88rem; background: var(--accent-soft); color: var(--fg); border-radius: 8px; padding: 10px 12px; }
+@media (max-width: 520px) {
+  .tl li { grid-template-columns: 1fr; gap: 2px; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="eyebrow">Cousins overnight · Sta. Rosa, Laguna</p>
+    <h1>Enchanted Kingdom, a concert, and one Airbnb for all of us</h1>
+    <div class="dates">
+      <span class="chip">Sat, Nov 28 – Sun, Nov 29, 2026</span>
+      <span class="chip">6 cousins</span>
+      <span class="chip warm">Vote on the Airbnb in the GC</span>
+    </div>
+    <p class="lede">Here's the plan so far. Please check three things: pick your Airbnb (A, B or C) in the group chat, RJ checks for a rental car, and everyone uses the packing lists below. Something wrong or missing? Tell EJ (details at the bottom).</p>
+  </header>
+
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Who's coming</p>
+      <h2>Three groups, one meeting point</h2>
+    </div>
+    <div class="people">
+      <div class="group">
+        <span class="tag ek">Enchanted Kingdom</span>
+        <p class="names">EJ, RJ, PJ</p>
+        <p class="route">From Los Baños, Laguna, straight to Sta. Rosa</p>
+      </div>
+      <div class="group">
+        <span class="tag ek">Enchanted Kingdom</span>
+        <p class="names">Quinjoa</p>
+        <p class="route">From Buendia to Sta. Rosa</p>
+      </div>
+      <div class="group">
+        <span class="tag ek">Enchanted Kingdom</span>
+        <p class="names">Ellen</p>
+        <p class="route">From Palawan. Lands at NAIA 12 NN, freshens up at the condo, then goes to Sta. Rosa</p>
+      </div>
+      <div class="group">
+        <span class="tag concert">Concert</span>
+        <p class="names">Greta</p>
+        <p class="route">From Palawan with Ellen. At the Sta. Rosa Multipurpose Sports Complex by 6 PM</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Schedule</p>
+      <h2>How the two days go</h2>
+      <p class="muted">Times marked <span class="tbd">TBD</span> are still open.</p>
+    </div>
+
+    <div class="day">
+      <h3>Saturday, Nov 28</h3>
+      <ol class="tl">
+        <li><time>12:00 NN</time><div class="what"><span>Ellen and Greta land at NAIA, go to the condo to freshen up</span><span class="who">Ellen, Greta</span></div></li>
+        <li><time>Afternoon</time><div class="what"><span>Everyone travels to Sta. Rosa (Los Baños group, Quinjoa from Buendia, Ellen and Greta from the condo)</span><span class="who">All</span></div></li>
+        <li><time>2:00 PM</time><div class="what"><span>Earliest Airbnb check-in (all 3 options start at 2 PM). Drop bags, rest a bit.</span><span class="who">All</span></div></li>
+        <li><time><span class="tbd">TBD</span></time><div class="what"><span>Head to Enchanted Kingdom</span><span class="who">EJ, RJ, PJ, Quinjoa, Ellen</span></div></li>
+        <li><time>6:00 PM</time><div class="what"><span>Greta at the Sta. Rosa Multipurpose Sports Complex for the concert</span><span class="who">Greta</span></div></li>
+        <li><time>After the concert</time><div class="what"><span>The group picks Greta up at the venue, then everyone goes back to the Airbnb</span><span class="who">EK group + Greta</span></div></li>
+      </ol>
+    </div>
+
+    <div class="day">
+      <h3>Sunday, Nov 29</h3>
+      <ol class="tl">
+        <li><time>Morning</time><div class="what"><span>Breakfast at the Airbnb, pack up</span><span class="who">All</span></div></li>
+        <li><time>12:00 NN</time><div class="what"><span>Check-out (confirm the exact time on the listing we book)</span><span class="who">All</span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="airbnb">
+    <div class="section-head">
+      <p class="eyebrow">Decision 1 · everyone</p>
+      <h2>Pick our Airbnb: A, B or C</h2>
+      <p class="lede">All three are hosted by Cathy, a Superhost (4.82 rating, 473 reviews) near SM Sta. Rosa and Enchanted Kingdom. Prices are for 1 night, 6 guests, as shown on Airbnb on Nov 20.</p>
+    </div>
+
+    <div class="vote-box">
+      <p><strong>How to vote:</strong> reply <strong>A</strong>, <strong>B</strong> or <strong>C</strong> in our group chat. Majority wins, then we book right away.</p>
+      <p>EJ's pick is <strong>A, the townhouse near SM &amp; EK</strong>, but every vote counts the same.</p>
+    </div>
+
+    <div class="listings">
+      <article class="listing pick">
+        <span class="pick-badge">EJ's pick</span>
+        <div class="top">
+          <span class="letter">A</span>
+          <div class="price"><div class="amt">₱4,300</div><div class="per">for 1 night</div></div>
+        </div>
+        <a class="shot" href="img/listing-a.webp" target="_blank" rel="noopener"><img src="img/listing-a.webp" alt="Listing A photos: living room, gated townhouse front, dining table"></a>
+        <p class="shot-caption">Tap the photo to see it bigger.</p>
+        <p class="name">Near SM &amp; EK 2 bedrooms, WiFi, gated parking, Netflix</p>
+        <dl class="facts">
+          <dt>Type</dt><dd>Entire townhouse</dd>
+          <dt>Fits</dt><dd>15 guests</dd>
+          <dt>Rooms</dt><dd>2 bedrooms · 7 beds · 1.5 baths</dd>
+          <dt>Rating</dt><dd>★ 4.76 · 55 reviews</dd>
+          <dt>Free cancel</dt><dd>Before Nov 23</dd>
+        </dl>
+        <p class="list-label good">Good</p>
+        <ul class="pros">
+          <li>Whole house to ourselves, lots of beds</li>
+          <li>Most reviews, so the most proven</li>
+          <li>Free parking, kitchen, self check-in, charcoal grill</li>
+          <li>Check-in window 2 PM to 12 MN, fine for a late return</li>
+        </ul>
+        <p class="list-label warm">Watch out</p>
+        <ul class="cons">
+          <li>No smoke or carbon monoxide alarm listed</li>
+          <li>Window-type AC</li>
+        </ul>
+        <p class="pick-why"><strong>Why EJ likes A:</strong> the whole townhouse is ours, it has the most beds (7) and the most reviews (55), gated parking, and it's ₱400 cheaper than B.</p>
+      </article>
+
+      <article class="listing">
+        <div class="top">
+          <span class="letter">B</span>
+          <div class="price"><div class="amt">₱4,700</div><div class="per">for 1 night</div></div>
+        </div>
+        <a class="shot" href="img/listing-b.webp" target="_blank" rel="noopener"><img src="img/listing-b.webp" alt="Listing B photos: two-storey house front with a family group, living room, porch, stairs"></a>
+        <p class="shot-caption">Tap the photo to see it bigger.</p>
+        <p class="name">Cath-Rie House, walking to SM, near EK, WiFi, Netflix</p>
+        <dl class="facts">
+          <dt>Type</dt><dd>Entire home</dd>
+          <dt>Fits</dt><dd>10 guests</dd>
+          <dt>Rooms</dt><dd>2 bedrooms · 5 beds · 1.5 baths</dd>
+          <dt>Rating</dt><dd>★ 4.82 · 33 reviews</dd>
+          <dt>Free cancel</dt><dd>Before Nov 27</dd>
+        </dl>
+        <p class="list-label good">Good</p>
+        <ul class="pros">
+          <li>Highest rating of the whole houses</li>
+          <li>Walking distance to SM Sta. Rosa</li>
+          <li>Secure, guarded subdivision</li>
+          <li>Has smoke and CO alarms, TV, workspace</li>
+          <li>Latest free-cancellation date (Nov 27)</li>
+        </ul>
+        <p class="list-label warm">Watch out</p>
+        <ul class="cons">
+          <li>Most expensive of the three</li>
+        </ul>      </article>
+
+      <article class="listing">
+        <div class="top">
+          <span class="letter">C</span>
+          <div class="price"><div class="amt">₱3,800</div><div class="per">for 1 night</div></div>
+        </div>
+        <a class="shot" href="img/listing-c.webp" target="_blank" rel="noopener"><img src="img/listing-c.webp" alt="Listing C photos: bedroom with bunk beds, ornate living room, kitchen, group photo"></a>
+        <p class="shot-caption">Tap the photo to see it bigger.</p>
+        <p class="name">Near SM, private bedroom inside Casa Elegante, WiFi</p>
+        <dl class="facts">
+          <dt>Type</dt><dd>Private room in a house</dd>
+          <dt>Fits</dt><dd>Up to 8 in the room</dd>
+          <dt>Rooms</dt><dd>1 big room · 10 beds · 2 private CRs</dd>
+          <dt>Rating</dt><dd>★ 5.0 · only 2 reviews</dd>
+          <dt>Free cancel</dt><dd>Before Nov 27</dd>
+        </dl>
+        <p class="list-label good">Good</p>
+        <ul class="pros">
+          <li>Cheapest option</li>
+          <li>Fast WiFi (171 Mbps)</li>
+          <li>Private kitchen, dining area and 2 bathrooms for us</li>
+        </ul>
+        <p class="list-label warm">Watch out</p>
+        <ul class="cons">
+          <li>Not the whole house: one big shared bedroom for all 6</li>
+          <li>Only 2 reviews so far</li>
+          <li>No lock on the bedroom door</li>
+          <li>Exterior security cameras on the property</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="table-scroll" role="region" aria-label="Airbnb side-by-side comparison" tabindex="0">
+      <table>
+        <thead>
+          <tr><th scope="col"></th><th scope="col">A · Townhouse</th><th scope="col">B · Cath-Rie House</th><th scope="col">C · Casa Elegante room</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1 night, 6 guests</th><td>₱4,300</td><td>₱4,700</td><td class="best">₱3,800</td></tr>
+          <tr><th scope="row">Privacy</th><td class="best">Whole townhouse</td><td class="best">Whole house</td><td>Private room in shared house</td></tr>
+          <tr><th scope="row">Sleeping</th><td class="best">2 rooms · 7 beds</td><td>2 rooms · 5 beds</td><td>1 room · 10 beds</td></tr>
+          <tr><th scope="row">Bathrooms</th><td>1.5</td><td>1.5</td><td class="best">2 private</td></tr>
+          <tr><th scope="row">Rating</th><td>4.76 (55)</td><td class="best">4.82 (33)</td><td>5.0 (only 2)</td></tr>
+          <tr><th scope="row">Parking</th><td>Free, gated</td><td>Free</td><td>Free</td></tr>
+          <tr><th scope="row">Safety alarms</th><td>None listed</td><td class="best">Smoke + CO</td><td>Smoke only</td></tr>
+          <tr><th scope="row">Location</th><td>Near SM and EK</td><td class="best">Walk to SM, near EK</td><td>Near SM</td></tr>
+          <tr><th scope="row">Free cancellation</th><td>Before Nov 23</td><td class="best">Before Nov 27</td><td class="best">Before Nov 27</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="car">
+    <div class="section-head">
+      <p class="eyebrow">Decision 2 · RJ</p>
+      <h2>RJ, can you find us a rental car?</h2>
+    </div>
+    <div class="ask">
+      <p>A car for <strong>Nov 28–29</strong> would make the weekend much easier: getting to Sta. Rosa, going between the Airbnb and EK, and picking up Greta after her concert. Can you check what's available and send the options in the GC?</p>
+      <p class="list-label warm">Useful to find out</p>
+      <ul>
+        <li>Price for 2 days, and what's included (fuel, toll, insurance)</li>
+        <li>Seats: room for 6 people plus bags (a 7-seater is safest)</li>
+        <li>Self-drive or with a driver, and the rate for each</li>
+        <li>Where and when to pick up and return it</li>
+        <li>Requirements: license, ID, deposit</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="checklists">
+    <div class="section-head">
+      <p class="eyebrow">Packing</p>
+      <h2>What to bring</h2>
+      <p class="muted">Tap to tick items off. Your ticks are saved on your own phone only.</p>
+    </div>
+    <div class="checklists">
+      <div class="checklist" data-list="ek">
+        <div><span class="tag ek">Enchanted Kingdom</span></div>
+        <h3>For the EK group</h3>
+        <p class="count"></p>
+        <ul>
+          <li><label><input type="checkbox" id="ek-1"><span>EK ticket or QR code (screenshot it too)</span></label></li>
+          <li><label><input type="checkbox" id="ek-2"><span>Valid ID</span></label></li>
+          <li><label><input type="checkbox" id="ek-3"><span>Cash plus GCash or card<span class="note">For food, games and lockers</span></span></label></li>
+          <li><label><input type="checkbox" id="ek-4"><span>Power bank and cable</span></label></li>
+          <li><label><input type="checkbox" id="ek-5"><span>Comfy shoes you can walk in all day</span></label></li>
+          <li><label><input type="checkbox" id="ek-6"><span>Extra shirt<span class="note">In case of water rides or sweat</span></span></label></li>
+          <li><label><input type="checkbox" id="ek-7"><span>Small bag or sling bag</span></label></li>
+          <li><label><input type="checkbox" id="ek-8"><span>Umbrella or poncho</span></label></li>
+          <li><label><input type="checkbox" id="ek-9"><span>Cap and sunscreen</span></label></li>
+          <li><label><input type="checkbox" id="ek-10"><span>Water bottle<span class="note">Check EK's rules on outside food and drinks</span></span></label></li>
+          <li><label><input type="checkbox" id="ek-11"><span>Waterproof pouch or ziplock for your phone</span></label></li>
+          <li><label><input type="checkbox" id="ek-12"><span>Light jacket for the evening</span></label></li>
+          <li><label><input type="checkbox" id="ek-13"><span>Face towel, wipes, alcohol</span></label></li>
+          <li><label><input type="checkbox" id="ek-14"><span>Personal meds<span class="note">Motion sickness meds if rides get to you</span></span></label></li>
+        </ul>
+      </div>
+
+      <div class="checklist" data-list="concert">
+        <div><span class="tag concert">Concert</span></div>
+        <h3>For Greta</h3>
+        <p class="count"></p>
+        <ul>
+          <li><label><input type="checkbox" id="co-1"><span>Concert ticket (e-ticket saved offline, or printed)</span></label></li>
+          <li><label><input type="checkbox" id="co-2"><span>Valid ID</span></label></li>
+          <li><label><input type="checkbox" id="co-3"><span>Small bag<span class="note">Check the venue's bag rules first</span></span></label></li>
+          <li><label><input type="checkbox" id="co-4"><span>Phone fully charged, plus power bank</span></label></li>
+          <li><label><input type="checkbox" id="co-5"><span>Cash for merch, food and drinks</span></label></li>
+          <li><label><input type="checkbox" id="co-6"><span>Light jacket or shawl</span></label></li>
+          <li><label><input type="checkbox" id="co-7"><span>Comfy shoes</span></label></li>
+          <li><label><input type="checkbox" id="co-8"><span>Earplugs</span></label></li>
+          <li><label><input type="checkbox" id="co-9"><span>Small towel, fan, wipes</span></label></li>
+          <li><label><input type="checkbox" id="co-10"><span>Lightstick or fan merch, if you have one</span></label></li>
+          <li><label><input type="checkbox" id="co-11"><span>Pickup spot agreed with the group before the show</span></label></li>
+          <li><label><input type="checkbox" id="co-12"><span>Airbnb address saved on your phone</span></label></li>
+        </ul>
+      </div>
+
+      <div class="checklist" data-list="stay">
+        <div><span class="tag ek">Everyone</span></div>
+        <h3>For the overnight stay</h3>
+        <p class="count"></p>
+        <ul>
+          <li><label><input type="checkbox" id="st-1"><span>Change of clothes and sleepwear</span></label></li>
+          <li><label><input type="checkbox" id="st-2"><span>Toiletries: toothbrush, shampoo, soap</span></label></li>
+          <li><label><input type="checkbox" id="st-3"><span>Towel<span class="note">Check if the Airbnb provides them</span></span></label></li>
+          <li><label><input type="checkbox" id="st-4"><span>Chargers and an extension cord</span></label></li>
+          <li><label><input type="checkbox" id="st-5"><span>Slippers</span></label></li>
+          <li><label><input type="checkbox" id="st-6"><span>Snacks, drinks, breakfast food</span></label></li>
+          <li><label><input type="checkbox" id="st-7"><span>Cards or board games</span></label></li>
+          <li><label><input type="checkbox" id="st-8"><span>Personal meds</span></label></li>
+          <li><label><input type="checkbox" id="st-9"><span>Pocket money for food and pasalubong</span></label></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <p class="eyebrow">Still open</p>
+      <h2>What we still need to settle</h2>
+    </div>
+    <ul class="open">
+      <li>Airbnb: vote A, B or C in the GC, then book</li>
+      <li>Rental car: RJ checks options and prices</li>
+      <li>What time the EK group goes in, and EK tickets</li>
+      <li>Greta's pickup spot and time after the concert</li>
+      <li>How we split the costs</li>
+    </ul>
+  </section>
+
+  <section id="requests">
+    <div class="section-head">
+      <p class="eyebrow">Your turn</p>
+      <h2>Requests, questions or corrections?</h2>
+      <p class="lede">This plan is a draft. If something is wrong, unclear or missing, message EJ directly or post it in the GC. Small things count too.</p>
+    </div>
+    <div class="requests">
+      <div class="req-kinds">
+        <div class="req-kind"><strong>Requests</strong><span>Food you want at the Airbnb, a ride you want to try at EK, a stop on the way, a different room setup.</span></div>
+        <div class="req-kind"><strong>Questions</strong><span>Times, meeting points, what to bring, who rides with whom.</span></div>
+        <div class="req-kind"><strong>Corrections</strong><span>Wrong flight time, a name, a schedule clash, anything on this page that isn't right.</span></div>
+      </div>
+      <p class="muted">Please start your message with your name and the section, for example: "Ellen – Schedule: our flight lands at 12:30, not 12 NN."</p>
+    </div>
+
+    <div class="gc">
+      <p class="list-label">Message for the GC</p>
+      <pre id="gc-msg">Hi cousins! Plan for Nov 28–29 in Sta. Rosa is up. Please vote for our Airbnb: reply A, B or C.
+A – ₱4,300 whole townhouse, near SM and EK (my pick!)
+B – ₱4,700 whole house, walk to SM
+C – ₱3,800 private room in a shared house
+RJ, can you check for a rental car for the 2 days? Packing lists are on the page too. Requests or corrections, message me here.</pre>
+      <button type="button" id="copy-btn">Copy message</button>
+    </div>
+  </section>
+
+  <p class="foot">Airbnb details and prices are from the listings as of Nov 20, 2026. Prices can change until we book.</p>
+</div>
+
+<script>
+(function () {
+  var KEY = "starosa-checklist-v1";
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { saved = {}; }
+
+  function updateCounts() {
+    document.querySelectorAll(".checklist").forEach(function (list) {
+      var boxes = list.querySelectorAll("input[type=checkbox]");
+      var done = 0;
+      boxes.forEach(function (b) { if (b.checked) done++; });
+      list.querySelector(".count").textContent = done + " of " + boxes.length + " packed";
+    });
+  }
+
+  document.querySelectorAll(".checklist input[type=checkbox]").forEach(function (box) {
+    if (saved[box.id]) box.checked = true;
+    box.addEventListener("change", function () {
+      saved[box.id] = box.checked;
+      try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
+      updateCounts();
+    });
+  });
+  updateCounts();
+
+  var btn = document.getElementById("copy-btn");
+  btn.addEventListener("click", function () {
+    var text = document.getElementById("gc-msg").textContent;
+    function selectText() {
+      var range = document.createRange();
+      range.selectNodeContents(document.getElementById("gc-msg"));
+      var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(range);
+      btn.textContent = "Selected, press copy";
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = "Copied";
+        setTimeout(function () { btn.textContent = "Copy message"; }, 2000);
+      }, selectText);
+    } catch (e) { selectText(); }
+  });
+})();
+</script>
+
+</html>

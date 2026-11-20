@@ -196,6 +196,19 @@ button {
 .covers { display: flex; flex-wrap: wrap; gap: 8px; }
 .signoff { font-weight: 600; }
 
+/* EK vs stay-in */
+.options { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 720px) { .options { grid-template-columns: 1fr; } }
+.option { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 12px; align-content: start; min-width: 0; }
+.option .reply { font-size: 0.85rem; color: var(--muted); }
+.option .reply b { color: var(--accent); }
+.option ul { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 0.9rem; }
+.ideas { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.idea { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; display: grid; gap: 10px; align-content: start; }
+.idea h3 { color: var(--accent); }
+.idea ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; font-size: 0.9rem; }
+.idea .note { font-size: 0.8rem; color: var(--muted); }
+
 /* Requests */
 .requests { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: grid; gap: 14px; }
 .req-kinds { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
@@ -227,7 +240,7 @@ button {
       <span class="chip warm">Vote on the Airbnb in the GC</span>
       <span class="chip good">Airbnb treat by Doc Greta</span>
     </div>
-    <p class="lede">Here's the plan so far. Please check three things: pick your Airbnb (A, B or C) in the group chat, RJ checks for a rental car, and everyone uses the packing lists below. Something wrong or missing? Tell EJ (details at the bottom).</p>
+    <p class="lede">Here's the plan so far. Please check a few things: vote in the group chat on our Airbnb (A, B or C) and on EK or a stay-in hangout, RJ checks for a rental car, and everyone uses the packing lists below. Something wrong or missing? Tell EJ (details at the bottom).</p>
   </header>
 
   <section class="thanks" id="thanks">
@@ -290,7 +303,7 @@ button {
         <li><time>12:00 NN</time><div class="what"><span>Ellen and Greta land at NAIA, go to the condo to freshen up</span><span class="who">Ellen, Greta</span></div></li>
         <li><time>Afternoon</time><div class="what"><span>Everyone travels to Sta. Rosa (Los Baños group, Quinjoa from Buendia, Ellen and Greta from the condo)</span><span class="who">All</span></div></li>
         <li><time>2:00 PM</time><div class="what"><span>Earliest Airbnb check-in (all 3 options start at 2 PM). Drop bags, rest a bit.</span><span class="who">All</span></div></li>
-        <li><time><span class="tbd">TBD</span></time><div class="what"><span>Head to Enchanted Kingdom</span><span class="who">EJ, RJ, PJ, Quinjoa, Ellen</span></div></li>
+        <li><time><span class="tbd">TBD</span></time><div class="what"><span>Head to Enchanted Kingdom, or stay in at the Airbnb (we're voting on this)</span><span class="who">EJ, RJ, PJ, Quinjoa, Ellen</span></div></li>
         <li><time>6:00 PM</time><div class="what"><span>Greta at the Sta. Rosa Multipurpose Sports Complex for the concert</span><span class="who">Greta</span></div></li>
         <li><time>After the concert</time><div class="what"><span>The group picks Greta up at the venue, then everyone goes back to the Airbnb</span><span class="who">EK group + Greta</span></div></li>
       </ol>
@@ -428,9 +441,80 @@ button {
     </div>
   </section>
 
+  <section id="ek-or-stay">
+    <div class="section-head">
+      <p class="eyebrow">Decision 2 · everyone</p>
+      <h2>Enchanted Kingdom, or a stay-in hangout?</h2>
+      <p class="lede">We don't have to do EK. We could also stay at the Airbnb all afternoon and just enjoy each other's company. Either way, Greta still goes to her concert and we still pick her up after.</p>
+    </div>
+
+    <div class="vote-box">
+      <p><strong>How to vote:</strong> reply <strong>EK</strong> or <strong>Stay-in</strong> in our group chat, together with your Airbnb vote.</p>
+    </div>
+
+    <div class="options">
+      <div class="option">
+        <span class="tag ek">Option 1</span>
+        <h3>Enchanted Kingdom</h3>
+        <ul>
+          <li>Rides, games and the park at night</li>
+          <li>A full day out: lots of walking, more energy</li>
+          <li>Needs EK tickets and a set time to go in</li>
+        </ul>
+        <p class="reply">Reply <b>EK</b></p>
+      </div>
+      <div class="option">
+        <span class="tag concert">Option 2</span>
+        <h3>Stay-in hangout at the Airbnb</h3>
+        <ul>
+          <li>Food, movies and long kwentuhan, all at our own pace</li>
+          <li>Relaxed, especially for Ellen after her flight</li>
+          <li>No tickets, no lines, and rain won't ruin it</li>
+        </ul>
+        <p class="reply">Reply <b>Stay-in</b></p>
+      </div>
+    </div>
+
+    <div class="section-head">
+      <h3>What we can do if we stay in</h3>
+    </div>
+    <div class="ideas">
+      <div class="idea">
+        <h3>Food</h3>
+        <ul>
+          <li>Cook dinner together in the Airbnb kitchen</li>
+          <li>Grill pork and hotdogs if our Airbnb has a grill (A has a charcoal grill)</li>
+          <li>Order samgyup, pizza or milk tea</li>
+          <li>Quick grocery and snack run to SM Sta. Rosa</li>
+          <li>Midnight merienda after we fetch Greta</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h3>Movies and chill</h3>
+        <ul>
+          <li>Netflix marathon (A and B both have Netflix)</li>
+          <li>Each of us picks one movie, majority decides the order</li>
+          <li>Pajama night with snacks and blankets</li>
+          <li>Late-night playlist and sounds while we talk</li>
+        </ul>
+      </div>
+      <div class="idea">
+        <h3>Catch-up and memories</h3>
+        <ul>
+          <li>Look at old family photos and childhood stories</li>
+          <li>"Year in review": everyone shares a high and a low of 2026</li>
+          <li>Plans and dreams for 2027</li>
+          <li>A proper group photo, plus a funny one</li>
+          <li>Just kwentuhan until we fall asleep</li>
+        </ul>
+        <p class="note">Bring old photos on your phone if you have them.</p>
+      </div>
+    </div>
+  </section>
+
   <section id="car">
     <div class="section-head">
-      <p class="eyebrow">Decision 2 · RJ</p>
+      <p class="eyebrow">Decision 3 · RJ</p>
       <h2>RJ, can you find us a rental car?</h2>
     </div>
     <div class="ask">
@@ -521,6 +605,7 @@ button {
     </div>
     <ul class="open">
       <li>Airbnb: vote A, B or C in the GC, then book</li>
+      <li>EK or stay-in: vote in the GC</li>
       <li>Rental car: RJ checks options and prices</li>
       <li>What time the EK group goes in</li>
       <li>EK tickets: each of us buys our own, or one person buys and we pay back</li>
@@ -549,6 +634,7 @@ button {
 A – ₱4,300 whole townhouse, near SM and EK (my pick!)
 B – ₱4,700 whole house, walk to SM
 C – ₱3,800 private room in a shared house
+Also vote: EK or Stay-in? (Stay-in = food, movies and catch-up at the Airbnb)
 Big thanks to Doc Greta, who's treating us to the Airbnb!
 RJ, can you check for a rental car for the 2 days? Packing lists are on the page too. Requests or corrections, message me here.</pre>
       <button type="button" id="copy-btn">Copy message</button>
